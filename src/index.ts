@@ -57,9 +57,77 @@ const employee: {
     readonly id: number;
     name: string;
     role?: string; // The question mark indicates that the role property is optional
+    retire: (date: Date) => void; // This is a method that takes a Date object as an argument and returns void (no return value)
 } = {
     id: 1,
     name: "Alice",
+    retire: (date: Date) => {
+        console.log(`Employee will retire on ${date.toDateString()}`);
+    }
 }
 
 employee.role = "Developer"; // This will work because TypeScript allows adding new properties to objects, but it is not recommended as it can lead to unexpected behavior and make the code harder to maintain.
+
+// Type aliases, unions and intersections, type narrowing, nullable types, the unknown type, the never type...
+
+// Type aliases allow you to create a new name for a type. This can be useful for maintaining readability and reusability of your code. You can create a type alias using the type keyword followed by the name of the alias and the type it represents
+
+type Employee = {
+    readonly id: number;
+    name: string,
+    role?: string;
+    retire: (date: Date) => void;
+}
+
+const employee1: Employee = {
+    id: 1,
+    name: "Alice",
+    retire: (date: Date) => {
+        console.log(`Employee will retire on ${date.toDateString()}`);
+    }
+}
+
+console.log(employee1); // Output: { id: 1, name: 'Alice', retire: [Function: retire] }
+
+// Union types allow you to specify that a value can be one of several types. This is done using the pipe(|) symbol to separate the types.
+
+function kgToLbs(weight: number | string): number {
+    if (typeof weight === "number") {
+        return weight * 2.20462;
+    }
+    else {
+        const parsedWeight = parseFloat(weight);
+        if (isNaN(parsedWeight)) {
+            throw new Error("Invalid weight format");
+        }
+        return parsedWeight * 2.20462;
+    }
+}
+
+kgToLbs(10); // Output: 22.0462
+kgToLbs("10kg"); // Output: 22.0462
+
+// Insertion Types
+// Ampersand (&) symbol is used to create intersection types, which combine multiple types into one. This means that a value of an intersection type must satisfy all the types it combines.
+
+type Draggable = {
+    drag: () => void
+}
+
+type Resizable = {
+    resize: () => void
+}
+
+type UIWidget = Draggable & Resizable;
+
+const widget: UIWidget = {
+    drag: () => {
+        console.log("Dragging the widget");
+    },
+    resize: () => {
+        console.log("Resizing the widget");
+    }
+};
+
+
+
