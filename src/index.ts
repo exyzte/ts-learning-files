@@ -36,7 +36,7 @@ console.log(Color[`4`]); // Output: "Red"
 console.log(Color[`5`]); // Output: "Green" 
 console.log(Color[`6`]); // Output: "Blue"
 
-function calculateTax(income: number, taxYear: 2024): number {
+function calculateTax(income: number, taxYear: number): number {
     if (taxYear < 2022) 
         return income * 1.2;
     return income * 1.3;
@@ -44,4 +44,22 @@ function calculateTax(income: number, taxYear: 2024): number {
 
 console.log(calculateTax(60_000, 2021)); // Output: 72000
 
+// values can be assigned to arguments when designing functions to designate default values for arguments. This is done using the equals sign (=) followed by the default value in the function signature.
+function calculateTaxWithDefault(income: number, taxYear: number = 2022): number {
+    if (taxYear < 2022) 
+        return income * 1.2;   
+    return income * 1.3;
+}
 
+console.log(calculateTaxWithDefault(60_000)); // Output: 78000
+
+const employee: {
+    id: number;
+    name: string;
+    role?: string; // The question mark indicates that the role property is optional
+} = {
+    id: 1,
+    name: "Alice",
+}
+
+employee.role = "Developer"; // This will work because TypeScript allows adding new properties to objects, but it is not recommended as it can lead to unexpected behavior and make the code harder to maintain.
