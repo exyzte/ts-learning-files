@@ -54,7 +54,7 @@ function calculateTaxWithDefault(income: number, taxYear: number = 2022): number
 console.log(calculateTaxWithDefault(60_000)); // Output: 78000
 
 const employee: {
-    id: number;
+    readonly id: number;
     name: string;
     role?: string; // The question mark indicates that the role property is optional
 } = {
