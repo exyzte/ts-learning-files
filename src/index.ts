@@ -161,3 +161,23 @@ function greetNullable(name: string | null | undefined) {
         console.log("Hello, Guest!");   
     }
 }
+
+// Optional chaining allows you to safely access nested properties of an object without having to check if each property of the chain exists. This is done using the optional chaining operator (?.) which short-circuits and returns undefined if any part of the chain is null or undefined.
+
+type Customer = {
+    birthdate: Date;    
+}
+
+function getCustomer(id: number): Customer | null | undefined {
+    return id === 0 ? null : { birthdate: new Date() };
+}
+
+let customer = getCustomer(0);
+
+if (customer !== null && customer !== undefined) {
+    console.log(customer.birthdate); // This will not execute because customer is null
+}
+
+/// The above can be refactored to: 
+
+console.log(customer?.birthdate?.getFullYear()); // This will safely return undefined without throwing an error
