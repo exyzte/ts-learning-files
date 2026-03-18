@@ -145,3 +145,19 @@ let metric: Metric = 'cm';
 
 console.log(metric); // Output: 'cm'
 
+// Nullable types allow you to specify that a value can be null or undefined. This is done using the union type with null pr undefined
+
+function greet(name: string) {
+    console.log(name.toUpperCase());
+}
+
+greet(null); // This will cause a runtime error because null does not have the toUpperCase method
+
+// instead use the union operator to allow null type values 
+function greetNullable(name: string | null | undefined) {
+    if (name) {
+        console.log(name.toUpperCase());
+    } else {
+        console.log("Hello, Guest!");   
+    }
+}
