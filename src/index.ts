@@ -129,6 +129,8 @@ const widget: UIWidget = {
     }
 };
 
+console.log(widget.drag()); // Output: "Dragging the widget"
+
 // Literal types allow you to specifically determine what values a type can have. This is done using string literals, numeric literals, or boolean literals.
 
 type Quantity = 50 | 100;
