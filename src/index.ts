@@ -129,5 +129,17 @@ const widget: UIWidget = {
     }
 };
 
+// Literal types allow you to specifically determine what values a type can have. This is done using string literals, numeric literals, or boolean literals.
 
+type Quantity = 50 | 100;
+
+let quantity: Quantity = 50;
+
+console.log(quantity); // Output: 50
+
+type Metric = 'cm' | 'inch';
+
+let metric: Metric = 'cm';
+
+console.log(metric); // Output: 'cm'
 
